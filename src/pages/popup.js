@@ -1,8 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import {Store} from 'react-chrome-redux'
-import store from './store';
 import axios from 'axios';
 import shallowEqual from 'shallowequal';
 import { isUuid, $$, I, Ref, RefTraversal } from '@membrane/util';
