@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import axios from 'axios';
 import shallowEqual from 'shallowequal';
 import { isUuid, $$, I, Ref, RefTraversal } from '@membrane/util';
-import TokenPrompt from './TokenPrompt';
+import TokenPrompt from './tokenPrompt';
 require('array.prototype.flatmap').shim();
 
 let TOKEN;
@@ -588,13 +588,39 @@ function denormalizeRef(ref, idToAlias) {
 
   return result.withPath(newPath);
 }
-
+class Test extends React.Component {
+  onClick = (e) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { what: "regex", regex: "^https?://github.com/.+$" }, function (response) {
+        console.log(response);
+      });
+    });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.onClick}>Search matches</button>
+        <style>
+          {`
+            body {
+              font-family: Consolas, "San Francisco", Monaco, monospace;
+              font-size: 10px;
+              min-width: 400px;
+              min-height: 60px;
+              max-width: 1000px;
+            }
+          `}
+        </style>
+      </div>
+    );
+  }
+}
 (() => {
   chrome.storage.sync.get(['token'], ({ token }) => {
     const mountNode = document.createElement('div');
     document.body.appendChild(mountNode)
     TOKEN = token;
-    ReactDOM.render(token ? <App /> : <TokenPrompt />, mountNode);
+    ReactDOM.render(token ? <Test /> : <TokenPrompt />, mountNode);
   });
 })();
 

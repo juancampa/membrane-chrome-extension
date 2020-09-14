@@ -11,6 +11,13 @@
     "background": {
       "scripts": ["pages/background.js"]
     },
+    "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["lib/contentScript.js"]
+    }
+  ],
+
     "page_action": {
       "default_popup": "pages/popup.html"
     },

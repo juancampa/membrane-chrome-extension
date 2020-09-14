@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TokenPrompt from './TokenPrompt';
+import TokenPrompt from './tokenPrompt';
 
 (() => {
   const mountNode = document.createElement('div')
