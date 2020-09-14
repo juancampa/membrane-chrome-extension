@@ -9,6 +9,6 @@
           el.style.border = "1px solid red";
         }
       }
-      sendResponse({ links: "hello" });
+      sendResponse({ data: "some response" });
     });
 })();
